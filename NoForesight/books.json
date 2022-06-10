@@ -1,0 +1,28 @@
+[
+  {
+    "Id": 1,
+    "Title": "Learn EF Core",
+    "Price": 19.0000
+  },
+  {
+    "Id": 2,
+    "Title": "C# Basics",
+    "Price": 18.0000
+  },
+  {
+    "Id": 3,
+    "Title": "ASP.NET Core advance",
+    "Price": 30.0000
+  },
+  {
+    "Id": 4,
+    "Title": "VB.NET To C#",
+    "Price": 9.0000
+  },
+  {
+    "Id": 5,
+    "Title": "Basic Azure",
+    "Price": 59.0000
+  }
+
+]

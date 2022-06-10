@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using GroupByMultiplePropertiesFindDuplicates.Models;
+
+namespace GroupByMultiplePropertiesFindDuplicates
+{
+    partial class Program
+    {
+        static void Main(string[] args)
+        {
+            List<GroupedMember> groups = Example1(MembersList());
+
+
+            foreach (GroupedMember groupMember in groups)
+            {
+                Console.WriteLine(groupMember);
+                foreach (Member member in groupMember.Lists)
+                {
+                    Console.WriteLine($"\t{member.Id,-3}{member.Active}");
+                }
+            }
+
+            Console.ReadLine();
+        }
+
+        private static List<GroupedMember> Example1(IEnumerable<Member> list) =>
+            list
+                .Where(member => member.Active)
+                .GroupBy(member => new { member.Name, member.Surname })
+                .Select(item => 
+                    new GroupedMember($"{item.Key.Name} {item.Key.Surname}", item.ToList()))
+                .ToList();
+
+        private static IEnumerable<GroupedMember> Example2(IEnumerable<Member> list)
+        {
+
+            var members = list
+                .Where(member => member.Active)
+                .GroupBy(member => new { member.Name, member.Surname })
+                .Select(item => new GroupedMember($"{item.Key.Name} {item.Key.Surname}", item.ToList()))
+                .ToList();
+
+            foreach (var member in members)
+            {
+                yield return member;
+            }
+        }
+
+        private static IEnumerable<Member> MembersList() =>
+            new List<Member>()
+            {
+                new Member { Id = 1, Active = true,  Name = "Mary", Surname = "Adams" },
+                new Member { Id = 2, Active = false, Name = "Sue", Surname = "Williams" },
+                new Member { Id = 3, Active = true,  Name = "Jake", Surname = "Burns" },
+                new Member { Id = 4, Active = true,  Name = "Jake", Surname = "Burns" },
+                new Member { Id = 5, Active = true,  Name = "Clair", Surname = "Smith" },
+                new Member { Id = 6, Active = true,  Name = "Mary", Surname = "Adams" },
+            };
+    }
+}
