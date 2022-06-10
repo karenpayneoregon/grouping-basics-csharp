@@ -20,9 +20,9 @@ namespace Sample3.Models
         public AuthorListing(string author, IEnumerable<List<string>> bookList)
         {
             Author = author;
-            List<string> titles = new List<string>();
-            bookList.ToList().ForEach(a => a.ForEach(titles.Add));
-            Titles = titles;
+            List<string> titles = new();
+            bookList.ToList().ForEach(item => item.ForEach(titles.Add));
+            Titles = titles.OrderBy(title =>title).ToList();
         }
     }
 }

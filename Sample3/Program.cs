@@ -10,9 +10,10 @@ namespace Sample3
         static void Main(string[] args)
         {
             var grouped = Mock.Books()
-                .GroupBy(group => group.AuthorName)
+                .GroupBy(group => group.AuthorName, StringComparer.CurrentCultureIgnoreCase)
                 .Select(grouping => new AuthorListing(grouping.Key, grouping.ToList()
                     .Select(book => book.Titles.ToList())))
+                .OrderBy(x => x.Author)
                 .ToList();
 
             foreach (AuthorListing listing in grouped)
