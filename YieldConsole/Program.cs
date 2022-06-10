@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace YieldConsole
 {
@@ -7,19 +8,19 @@ namespace YieldConsole
     {
         static void Main(string[] args)
         {
-            foreach (int i in Power(2, 8))
+            foreach (int index in Power(2, 8))
             {
-                Console.Write("{0} ", i);
+                Debug.WriteLine("{0} ", index);
             }
-            Console.ReadLine();
         }
+
         public static IEnumerable<int> Power(int number, int exponent)
         {
             int result = 1;
 
             for (int index = 0; index < exponent; index++)
             {
-                result = result * number;
+                result *= number;
                 yield return result;
             }
         }
