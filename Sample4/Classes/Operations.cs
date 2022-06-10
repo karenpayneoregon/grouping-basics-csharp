@@ -29,8 +29,11 @@ namespace Sample4.Classes
 
     class Operations
     {
+        
         public delegate void IterateAuthors(string authorName, List<Book> books);
         public static event IterateAuthors OnIterate;
+
+
         public static void GetAuthorAndBooks()
         {
             List<GroupedAuthor> groupedAuthors = Mocked.Books()
@@ -45,6 +48,17 @@ namespace Sample4.Classes
                     .ToList().ForEach(current => OnIterate?.Invoke(current.AuthorName, current.Books));
             }
         }
+
+        public static List<GroupedAuthor> GetAuthorAndBooks1() => 
+            Mocked
+                .Books()
+                .GroupBy(author => author.Name, StringComparer.InvariantCultureIgnoreCase)
+                .Select(group => new GroupedAuthor(group
+                    .Select(author => new AuthorContainer(author.Name, author.Books))))
+                .ToList();
+
+
+        
     }
 
 
