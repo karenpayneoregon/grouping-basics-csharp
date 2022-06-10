@@ -14,6 +14,8 @@ By understanding all the code samples provides a base for more advance group by 
 
 One of several code samples
 
+![Screenshot](assets/screenshot.png)
+
 ```csharp
 partial class Program
 {
