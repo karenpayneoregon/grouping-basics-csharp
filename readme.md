@@ -12,4 +12,34 @@ By understanding all the code samples provides a base for more advance group by 
 
 **Note** Other than the project `GroupByMultipleProperties` all other examples rerquire no database while `GroupByMultipleProperties` requires SQL-Server as this project uses Entity Framework Core.
 
+One of several code samples
+
+```csharp
+partial class Program
+{
+    static void Main(string[] args)
+    {
+        var grouped = Mock.Books()
+            .GroupBy(group => group.AuthorName)
+            .Select(grouping => new AuthorListing(grouping.Key, grouping.ToList()
+                .Select(book => book.Titles.ToList())))
+            .ToList();
+
+        foreach (AuthorListing listing in grouped)
+        {
+            Console.WriteLine(listing.Author);
+            foreach (var title in listing.Titles)
+            {
+                Console.WriteLine($"\t{title}");
+            }
+
+            Console.WriteLine();
+
+        }
+
+        Console.ReadLine();
+    }
+}
+```
+
 
