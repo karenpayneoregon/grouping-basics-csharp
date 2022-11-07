@@ -11,7 +11,7 @@ internal partial class Program
 {
     static void Main(string[] args)
     {
-        GroupByCategories();
+        EmployeeReportTo();
         ExitPrompt();
 
     }
@@ -22,7 +22,8 @@ internal partial class Program
 
         using var context = new Context();
 
-        var groupedCategories = context.Products.Include(p => p.Category)
+        List<List<Products>> groupedCategories = context.Products
+            .Include(p => p.Category)
             .ToList()
             .OrderBy(p => p.Category.CategoryName)
             .ThenBy(p => p.ProductName)
@@ -94,7 +95,7 @@ internal partial class Program
 
         foreach (var manager in managers)
         {
-            Console.WriteLine($"{manager.Employee.FirstName} {manager.Employee.LastName}");
+            AnsiConsole.MarkupLine($"[cyan]{manager.Employee.FirstName} {manager.Employee.LastName}[/]");
             foreach (var worker in manager.Workers)
             {
                 Console.WriteLine($"\t{worker.FirstName} {worker.LastName}");
