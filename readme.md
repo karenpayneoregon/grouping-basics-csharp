@@ -45,3 +45,6 @@ partial class Program
 ```
 
 
+Another using EF Core 6
+
+![x](assets/screenshot1.png)
