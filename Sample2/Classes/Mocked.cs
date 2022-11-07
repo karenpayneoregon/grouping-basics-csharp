@@ -10,7 +10,8 @@ namespace Sample2.Classes
             {
                 new() { Name = "Frank Smith", Age = 42, Country = Country.USA },
                 new() { Name = "Mary Adams", Age = 38, Country = Country.USA },
-                new() { Name = "Bill Jenkins", Age = 19, Country = Country.Germany },
+                new() { Name = "Bill Jenkins", Age = 49, Country = Country.Germany },
+                new() { Name = "Mark Jenkins", Age = 49, Country = Country.Germany },
                 new() { Name = "Anne Jones", Age = 19, Country = Country.Germany },
                 new() { Name = "James Gallagher", Age = 8, Country = Country.USA },
             };

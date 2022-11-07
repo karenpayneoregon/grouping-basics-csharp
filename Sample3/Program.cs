@@ -2,6 +2,7 @@
 using System.Linq;
 using Sample3.Classes;
 using Sample3.Models;
+using Spectre.Console;
 
 namespace Sample3
 {
@@ -18,7 +19,7 @@ namespace Sample3
 
             foreach (AuthorListing listing in grouped)
             {
-                Console.WriteLine(listing.Author);
+                AnsiConsole.MarkupLine($"[cyan]{listing.Author}[/]");
                 foreach (var title in listing.Titles)
                 {
                     Console.WriteLine($"\t{title}");

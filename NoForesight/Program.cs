@@ -22,6 +22,7 @@ namespace NoForesight
         {
             
             using var context = new BookContext();
+            Helpers.CleanDatabase(context);
             var books = context.Books.ToList();
 
             var result1 = books

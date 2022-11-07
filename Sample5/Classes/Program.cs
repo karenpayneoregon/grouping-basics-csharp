@@ -20,6 +20,42 @@ namespace Sample5
         public static Table GenericTable(string title) =>
             new Table().RoundedBorder().AddColumn("[b]Tax rate[/]").AddColumn("[b]Value[/]").AddColumn("[b]Tax amount[/]").AddColumn("[b]Final amount[/]").Alignment(Justify.Center).BorderColor(Color.LightSlateGrey).Title($"[yellow]{title}[/]");
 
+        private static void DeleteMe()
+        {
+
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add(new DataColumn()
+            {
+                ColumnName = "Id", 
+                DataType = typeof(int), 
+                AutoIncrement = true, 
+                AutoIncrementSeed = 10
+            });
+            dt.Columns.Add("Column1", typeof(decimal));
+            dt.Columns.Add("Column2", typeof(decimal));
+            dt.Columns.Add(new DataColumn() { ColumnName = "SubTotal", DataType = typeof(decimal), 
+                Expression = "Column1 * Column2"
+            });
+
+            dt.Rows.Add(null,13, 2);
+            dt.Rows.Add(null,13, 22);
+
+
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Console.WriteLine($"{row.Field<int>("id"), -4}{row.Field<decimal>("SubTotal")}");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+
+        }
+
         /// <summary>
         /// Mini data coming from a database, text file etc.
         /// </summary>
@@ -61,8 +97,8 @@ namespace Sample5
 
                     row["TaxRate"] = grouped.Key;
                     row["Value"] = grouped.Sum(dRow => dRow.Field<decimal>("Value"));
-                    row["TaxAmount"] = grouped.Sum(dRow => dRow.Field<decimal>("TaxAmount"));
                     row["FinalValue"] = grouped.Sum(dRow => dRow.Field<decimal>("FinalValue"));
+                    row["TaxAmount"] = grouped.Sum(dRow => dRow.Field<decimal>("TaxAmount"));
 
                     return row;
 

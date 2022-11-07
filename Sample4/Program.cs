@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sample4.Classes;
 using Sample4.Models;
+using Spectre.Console;
 
 namespace Sample4
 {
@@ -16,10 +17,11 @@ namespace Sample4
 
         private static void OnIterate(string authorName, List<Book> books)
         {
-            Console.WriteLine(authorName);
+
+            AnsiConsole.MarkupLine($"[cyan]{authorName}[/]");
             foreach (var book in books)
             {
-                Console.WriteLine($"\t{book.Id,-8}{book.Title}");
+                AnsiConsole.MarkupLine($"\t[green]{book.Id,-8}[/][yellow]{book.Title}[/]");
             }
         }
     }

@@ -1,18 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
-using Spectre.Console;
-using W = ConsoleHelperLibrary.Classes.WindowUtility;
+using System.Text;
+using System.Threading.Tasks;
 
 // ReSharper disable once CheckNamespace
-namespace Sample2;
+namespace EFCoreGroupByConsoleApp;
 
-partial class Program
+internal partial class Program
 {
     [ModuleInitializer]
     public static void Init()
     {
-        Console.Title = "Code sample: grouping simple with classes";
-        W.SetConsoleWindowPosition(W.AnchorWindow.Center);
+        Console.Title = "Code sample: Grouping with multiple sorting";
+        WindowUtility.SetConsoleWindowPosition(WindowUtility.AnchorWindow.Center);
     }
     private static void Render(Rule rule)
     {
