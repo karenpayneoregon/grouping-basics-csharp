@@ -21,6 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Bogus" Version="34.0.2" />
 		<PackageReference Include="Spectre.Console" Version="0.44.0" />
 	</ItemGroup>
 

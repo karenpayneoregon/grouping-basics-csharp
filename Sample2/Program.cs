@@ -12,27 +12,32 @@ partial class Program
 {
     static void Main(string[] args)
     {
-        var root = new Tree("[lightsteelblue]Country and age[/]");
 
-        var usersGroupedByCountryAndAge = SomeExample();
-        foreach (var group in usersGroupedByCountryAndAge)
-        {
-            var currentNode = root.AddNode($"From [yellow]{@group.Key.HomeCountry}[/] at the age of [yellow]{@group.Key.Age}[/]");
-            foreach (var user in @group)
+
+        var grouped =
+            from student in Mocked.GetStudents()
+            group student by new { Branch = student.Branch, student.Gender } into g
+            orderby g.Key.Branch descending, g.Key.Gender ascending
+            select new
             {
-                currentNode.AddNode($"{user.Name} - {user.Age} years");
+                Branch = g.Key.Branch, 
+                Gender = g.Key.Gender, 
+                Students = g.OrderBy(s => s.FullName)
+            };
+
+
+        foreach (var group in grouped)
+        {
+            AnsiConsole.MarkupLine($"[white]Branch[/] [cyan]{group.Branch}[/] [white]Gender[/] [cyan]{group.Gender}[/] [white]No of Students[/] [cyan]{group.Students.Count()}[/]");
+
+            foreach (var student in group.Students)
+            {
+                AnsiConsole.MarkupLine($"  [white]Id[/] [orange1]{student.Id}[/] [white]Name[/] [orange1]{student.FullName}[/] [white]Age[/] [orange1]{student.Age}[/]");
             }
+            Console.WriteLine();
         }
 
-        AnsiConsole.Write(root);
-
-        Console.ReadLine();
+        ExitPrompt();
     }
-
-
-    private static IEnumerable<IGrouping<CountryAndAgeGroups, User>> SomeExample() 
-        => Mocked
-            .Users()
-            .GroupBy(user => new CountryAndAgeGroups(user.Country, user.Age));
-
 }
+
