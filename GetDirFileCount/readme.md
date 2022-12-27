@@ -24,6 +24,7 @@ Directory code comes from this [repository](https://github.com/karenpayneoregon/
 
 # Install/uninstall
 
+1. Remove the Console.ReadLine in Main
 1. Build the project
 1. Open a command prompt to the root of this project
 1. Enter `dotnet tool install --global --add-source ./nupkg GetDirFileCount` to install the tool

@@ -34,6 +34,7 @@ namespace GetDirFileCount
                 
             }
 
+            Console.ReadLine(); // remove for tool usage
         }
     }
 }
